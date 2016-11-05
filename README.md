@@ -17,3 +17,14 @@ The 'Slope' and 'Intercept' values are displayed in the side view panel when the
 This Intractive plot displays Company Pre Tax Income over various quarters for the selected Company and Fiscal Year.
 The side panel contains a drop downs to select the Stock company and Fiscal year.
 Based on the selection respective quarterly Pre Tax Income amounts for the selected Stock is charted as a line graph.
+
+## Server.R - Contains the server side code needed to deploy the Shiney app
+
+## ui.R
+Contains the User Interface side of the code needed to deploy the shiney app
+
+## StockDataApp.html
+Contains the pitch about the application
+
+## StockDataApp.Rmd
+Contains the data needed to generate the presentation file
