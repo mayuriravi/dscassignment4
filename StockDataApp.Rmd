@@ -1,0 +1,53 @@
+---
+title: "Stock Data App"
+author: "Raviraj Chittaranjan"
+date: "November 5, 2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Stock Data App Introduction
+
+- The main purpose of this application is to allow users to interactively gain insight about major stocks sold on various stock markets in the US. 
+- The data for this app is downloaded from Quandl.com. 
+- This application has 2 tabs which present the stock data in Interactive charts.
+
+The application is available at https://mayuriravi.shinyapps.io/DSC-Assignment4/
+
+## Application Features
+
+- About tab
+ --    Lists the features available as par of the application
+- Linear Model tab
+ --   An Interactive plot with a dynamic Linear Model line based on user selected data points
+- Selective Graph tab
+ --   An Intractive plot with data refreshed based on the selections from the drop down
+
+## Linear Model
+An Interactive chart that displays Linear model
+```{r, echo = FALSE, include=FALSE}
+library(shiny)
+library(plotly)
+```
+
+```{r,echo = FALSE}
+mydata <- read.csv("stocksdata.csv")
+plot(mydata$comm_shares_out, mydata$oper_income, xlab = "Common Outstanding Shares(Thousands)",
+         ylab = "Operating Income", main = "Company Performance(Thousands)",
+             cex = 1.5, pch = 16, bty = "n", col = "dark red")
+p  <- lm(oper_income ~ comm_shares_out, data = mydata)
+abline(p, col = "blue", lwd = 2)
+```
+
+## Selective Graph
+This chart provides a sample output for Company APPLE and fiscal year 2016
+```{r, echo = FALSE}
+subdata <- mydata[mydata$comp_name == "APPLE INC" & mydata$per_fisc_year == 2016 & mydata$per_type == "Q",]
+plot(x = subdata$per_fisc_qtr, y = subdata$pre_tax_income, type="l", xlab = "Quarters",
+                    ylab = "Pre Tax Income(Thousands)", main = "Company Pre Tax Income over various quarters for the selected year", cex = 1.5, pch = 16, col = "dark red")
+
+```
+
